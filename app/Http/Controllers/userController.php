@@ -118,6 +118,7 @@ class userController extends Controller
      */
     public function destroy($id)
     {
+
        $user=User::find($id);
         $user->delete();
         flash()->overlay("Se ha Eliminado el usuario:"."<strong>".$user->name."</strong>"." "."de Manera Exitosa!");

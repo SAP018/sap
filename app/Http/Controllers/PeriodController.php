@@ -90,8 +90,13 @@ class PeriodController extends Controller
      * @param  \App\Period  $period
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Period $period)
+    public function destroy($id)
     {
-        //
+
+        //dd($id);
+          $period=Period::find($id);
+        $period->delete();
+        flash()->overlay("Se ha Eliminado el periodo:"."<strong>".$period->name."</strong>"." "."de Manera Exitosa!");
+        return redirect()->route('period.index');
     }
 }

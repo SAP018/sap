@@ -34,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
 
 	//rutas para periodos
 	Route::resource('period','PeriodController');
+	Route::get('period/{id}/destroy',[
+		'uses' => 'PeriodController@destroy',
+		'as'  =>   'admin.period.destroy'
+		]);
 
 	//rutas para teams
 	Route::resource('term','TermController');
@@ -44,7 +48,11 @@ Route::middleware(['auth'])->group(function () {
 		'as'  =>   'admin.period1.index'
 		]);
 
-
+	//ruta para pagar el ticket
+	Route::get('reading/{id?}/index',[
+		'uses' => 'ReadingController@pay',
+		'as'  =>   'admin.reading.pay'
+		]);
 
 });
 });

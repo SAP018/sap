@@ -14,7 +14,7 @@
          <a class="nav-link active" href="{{route('period.index')}}" data-toggle="tooltip" data-placement="bottom" title="Lecturas del agua potable"><i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i> Periodos<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item" diseable>
-        <a class="nav-link active diseable " href="{{route('reading.index')}}" data-toggle="tooltip" data-placement="bottom" title="Lecturas del agua potable" ><i class="fa fa-book fa-2x" aria-hidden="true"></i> Lecturas<span class="sr-only">(current)</span></a>
+        <a class="nav-link active diseable " href="{{route('reading.create')}}" data-toggle="tooltip" data-placement="bottom" title="Lecturas del agua potable" ><i class="fa fa-book fa-2x" aria-hidden="true"></i> Lecturas<span class="sr-only">(current)</span></a>
       </li>
        <li style="margin-right: 50px" class="nav-item dropdown navbar-toggler-right " data-toggle="tooltip" data-placement="left" title="{{ Auth::user()->name }} ">
         <a class="nav-link dropdown-toggle active" href="http://example.com" id="navbarDropdownMenuLink"  data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">

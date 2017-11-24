@@ -48,7 +48,7 @@
   <a href="{{route('admin.period1.index',$period->id)}}" class="alert-link"><strong>{{$period->year}}</strong> {{$period->name}}</a>
   
   <a href="{{route('period.edit',$period->id)}}" class="btn btn-sm btn-warning  text-right">Editar</a>
-  <a href="" class="btn btn-sm btn-danger  text-right"> eliminar</a>
+  <a href="{{ route('admin.period.destroy',$period->id) }}" class="btn btn-sm btn-danger  text-right"> eliminar</a>
 
 </div>
 </div>

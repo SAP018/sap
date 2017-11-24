@@ -20,16 +20,19 @@
 	{!! Form::label('customer_id','Customer_id',['class'=>'control-label']) !!}
 	{!! Form::select('customer_id',$customers,null,['class' => 'form-control','placeholder' => 'seleccione una opcion..', 'requerid']) !!}
 	</div>
+	 <div class="form-group ">
+	{!! Form::label('period_id','Periodos',['class'=>'control-label']) !!}
+	{!! Form::select('period_id',$periods,null,['class' => 'form-control','placeholder' => 'seleccione una opcion..', 'requerid']) !!}
+	</div>
+
 
 	<div class="form-group">
     {!! Form::label('mediada','Mediada',['class'=>'control-label']) !!}
     {!! Form::text('medida',null,['class'=>'form-control','placeholder' => 'Metros Del Medidor','required']) !!}
     </div>
 
-    <div class="form-group">
-    {!! Form::label('monto','Cantidad',['class'=>'control-label']) !!}
-    {!! Form::text('monto',null,['class'=>'form-control','placeholder' => 'Cantidad A Cobrar','required']) !!}
-    </div>
+
+   
     
 
 
