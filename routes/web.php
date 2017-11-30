@@ -54,6 +54,13 @@ Route::middleware(['auth'])->group(function () {
 		'as'  =>   'admin.reading.pay'
 		]);
 
+		//ruta para pagar imprimir el ticket
+	Route::get('reading1/{id?}/index',[
+		'uses' => 'ReadingController@factura',
+		'as'  =>   'admin.reading1.factura'
+		]);
+
+
 });
 });
 

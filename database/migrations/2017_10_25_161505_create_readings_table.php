@@ -29,7 +29,7 @@ class CreateReadingsTable extends Migration
             $table->decimal('medida', 5, 2);
             $table->decimal('monto', 5, 2);
             $table->decimal('recargo', 5, 2)->nullable();
-            $table->integer('month');
+            $table->biginteger('month')->nullable();
             $table->enum('estatus', ['1', '2','3'])->default('1')->comment('1= sinpagar 2=pagado');
            
 

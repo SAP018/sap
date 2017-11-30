@@ -63,12 +63,8 @@ class ReadingController extends Controller
         
         //guardar lecturas
         $reading = new Reading($request->all());
-        if($request->medida <=10){
-           $reading->monto=100; 
-        }else{
-        $reading->monto=$request->medida*10; 
-        }
        
+       $reading->monto=0;
         $reading->user_id= \Auth::user()->id;
         $reading->period_id=$request->period_id;
         $reading->month=date('m');
@@ -129,11 +125,67 @@ class ReadingController extends Controller
 
     public function pay($id){
        // dd($id);
-        $reads= Reading::where('customer_id','=',$id)->get();
+
+
+
+//$url="http://".$_SERVER['HTTP_HOST'].":".$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
+//dd($url);
+
+     $reads= Reading::where('customer_id','=',$id)->get();
           
         $read = Reading::find($id);
         $read->estatus=2;
+
+         $factura = Reading::find($id);
+               $mes=  $factura->month;
+               $mes1 =$mes-1;
+            //  dd($mes1);
+                $flight = Reading::where('id', $id)->orwhere('month','=',$mes1)
+                ->first();
+               $metros =$factura->medida - $flight->medida;
+               if($metros < 10){
+           $read->monto=100; 
+        }else{
+           $read->monto=$metros*10; 
+
+        
+        }
+
+
+
+
+
+
+
+
         $read->save();
-        return view('admin.readings.show')->with('reads',$reads);
+        //obtener la url del anterior
+        redirect()->getUrlGenerator()->previous();
+       return redirect(redirect()->getUrlGenerator()->previous());
+        //return view('admin.readings.show')->with('reads',$reads);
     }
+
+    public function factura($id)
+    {   
+        //dd($id);
+                $factura = Reading::find($id);
+               $mes=  $factura->month;
+               $mes1 =$mes-1;
+            //  dd($mes1);
+                $flight = Reading::where('id', $id)->orwhere('month','=',$mes1)
+                ->first();
+               $metros =$factura->medida - $flight->medida;
+               if($metros < 10){
+           $cantidad=100+$factura->recargo; 
+        }else{
+        $cantidad =($metros*10)+$factura->recargo;
+        }
+               //$total =$metros*10;
+
+               // dd($factura->customer->name);
+              $pdf = \App::make('dompdf.wrapper');
+              $pdf->loadView('admin.readings.pdf.factura',['factura'=> $factura,'flight'=> $flight,'metros' => $metros,'cantidad'=> $cantidad]);
+            return $pdf->stream();
+    }
+
 }

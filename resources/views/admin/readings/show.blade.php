@@ -64,6 +64,16 @@
           <td><span class="badge  badge-danger">Diciembre</span></td>
           @elseif($read->month=="1")
           <td><span class="badge  badge-danger">Enero</span></td>
+          @elseif($read->month=="2")
+          <td><span class="badge  badge-danger">Febrero</span></td>
+          @elseif($read->month=="3")
+          <td><span class="badge  badge-danger">Marzo</span></td>
+          @elseif($read->month=="4")
+          <td><span class="badge  badge-danger">Abril</span></td>
+          @elseif($read->month=="5")
+          <td><span class="badge  badge-danger">Mayo</span></td>
+          @elseif($read->month=="6")
+          <td><span class="badge  badge-danger">Junio</span></td>
           @else
           <td><span class="badge  badge-danger">Otro</span></td>
         @endif
@@ -83,7 +93,7 @@
                  <i class="fa fa-ticket" aria-hidden="true"></i>
                 </a>
                 @else
-                 <a href="" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Imprimir Tiket">
+                 <a href="{{route('admin.reading1.factura',$read->id)}}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Imprimir Tiket">
                  <i class="fa fa-ticket" aria-hidden="true"></i>
                 </a>
                 @endif
