@@ -17,7 +17,7 @@
 @endif
  
  <div style="padding:30px">
-{!! Form::open(['route' => 'customer.store']) !!}
+{!! Form::open(['route' => 'customer.store','method' => 'POST']) !!}
         <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
     <!--Nombre del consumidor -->
     <div class="form-group">

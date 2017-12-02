@@ -57,8 +57,13 @@ class ReadingController extends Controller
         
        //$period = Period::where('year','=',date('Y'))->limit(1)->get();
 
-
         
+           
+       
+        if ($request->isMethod('post')) {
+           
+    //
+
       
         
         //guardar lecturas
@@ -69,6 +74,7 @@ class ReadingController extends Controller
         $reading->period_id=$request->period_id;
         $reading->month=date('m');
         $reading->save();
+         }
         //dd($reading);
          
           flash()->success("Se ha registrado el usuario:".$reading->customer->name." "."de manera exitosa!")->important();

@@ -40,7 +40,8 @@
 
 <br>
 <div class="form-gropu">
-	 {!! Form::submit('Registrar',['class' => 'btn btn-success']) !!}
+	 {!! Form::submit('Registrar',['class' => 'btn btn-success','name '=> 'registrar']) !!}
+	
 </div>
 </div>
 {!! Form::close() !!}

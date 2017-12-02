@@ -14,8 +14,23 @@
 </head>
 <body>
 
+	<style>
+  @media (min-width: 576px) {
+    
+.est{
+     
+margin-left: 5px;
+margin-right: 5px;
+
+} 
+
+
+}
+</style>
+
+
 	<div class="row">
-		<div class="col-sm-12">
+		<div class=" col-lg-12">
 			<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
 			@include('admin.template.partials.navbar')
 			</nav>
@@ -24,27 +39,21 @@
 	
 	<br>
 
-	<div class="row container" >
+	<div class="row est " >
 		<!-- <div class="col-md-1"></div> -->
 		
-		<div class="col-md-11">
+		<div class="col-sm-12 col-md-12 col-lg-9" style="padding-bottom: 10px">
 			 @include('flash::message')
 		@include('admin.template.partials.card') 
 		</div>
 		
-		<div class="col-md-1">
+		<div class="col-sm-12 col-md-12 col-lg-3 ">
 		@yield('aside')
 
 		</div>
 	
 	
 	
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			
-		</div>
-	</div>
 
 
 

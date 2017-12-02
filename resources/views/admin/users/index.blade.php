@@ -99,7 +99,7 @@
 @endsection
 
 @section('aside')
-<div class="card "  style="width: 20rem;">
+<div class="card est " >
   <div class="card-header">
     <i class="fa fa-cog" aria-hidden="true"></i> Datos Generales
   </div>

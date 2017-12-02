@@ -10,10 +10,34 @@
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css')}}">
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css')}}">
 </head>
+<style> 
+
+@media (max-width: 576px) {
+.est{
+       margin-left:  10px;
+       margin-right:  10px;
+       margin-bottom: 1px;
+       margin-top:10px;
+     
+
+
+} 
+}
+
+@media (min-width: 576px) {
+.est{
+       margin-top:90px;
+
+
+} 
+}
+</style>
 <body class="img-responsive" background="img/agua.png">
-<div class="row" style="margin-top:90px; background-color: rgba(0,0,0,0);">
-    <div class="col-sm-4"></div>
-    <div class="col-sm-4">
+<div class="row est" style=" background-color: rgba(0,0,0,0);">
+    <div class="col-sm-1 col-lg-4 col-md-2 " >
+        
+    </div>
+    <div class=" col-sm-10  col-lg-4 col-md-8 " >
         <div class="card" style=" background-color: rgba(0,0,0,0.05);">
   <div class="card-header text-center">
     Login De Acceso Al Sistema
@@ -65,7 +89,7 @@
   </div>
 </div>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-1  col-lg-4 col-md-2 "></div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
