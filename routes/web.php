@@ -59,7 +59,11 @@ Route::middleware(['auth'])->group(function () {
 		'uses' => 'ReadingController@factura',
 		'as'  =>   'admin.reading1.factura'
 		]);
-
+//ruta para las vistad del show
+	Route::get('reading2/{id?}/{name?}/show',[
+		'uses' => 'ReadingController@show',
+		'as'  =>   'admin.reading2.show'
+		]);
 
 });
 });

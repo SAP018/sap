@@ -83,15 +83,23 @@
                 <a href="" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Editar Lectura">
                 <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
                 </a>
-          
+                @if($read->estatus==2)
+                  <a href="{{route('admin.reading.pay',$read->id)}}" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Deshacer pago">
+                    <i class="fa fa-money" aria-hidden="true"></i>
+          @elseif($read->estatus==1)
+               
+              
           <a href="{{route('admin.reading.pay',$read->id)}}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Pagar">
 
                 <i class="fa fa-money" aria-hidden="true"></i>
+
+                @endif
                 </a>
                 @if($read->estatus==1)
                 <a href="" class="btn btn-danger disabled" data-toggle="tooltip" data-placement="bottom" title="No puedes imprimir ticket pq no ha pagado" diseabled>
                  <i class="fa fa-ticket" aria-hidden="true"></i>
                 </a>
+                
                 @else
                  <a href="{{route('admin.reading1.factura',$read->id)}}" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Imprimir Tiket">
                  <i class="fa fa-ticket" aria-hidden="true"></i>

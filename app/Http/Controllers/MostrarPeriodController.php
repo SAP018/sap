@@ -37,7 +37,7 @@ class MostrarPeriodController extends Controller
 $customers = DB::table('customers')
             ->join('readings', 'customers.id', '=', 'readings.customer_id')
             ->join('periods', 'readings.period_id', '=', 'periods.id')
-            ->select('customers.id as ids','customers.name as names','periods.name as periodos')
+            ->select('customers.id as ids','customers.name as names','periods.name as periodos','periods.id as periodid')
             ->where('period_id','=',$id)
             ->where('customers.name','LIKE','%'.$request->mes.'%')
             // return $query->where('name','LIKE','%'.$dato.'%')

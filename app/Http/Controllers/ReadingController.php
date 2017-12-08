@@ -87,10 +87,13 @@ class ReadingController extends Controller
      * @param  \App\Reading  $reading
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id,$periodo)
     {
+        //la variable periodo id trae el id del periodo que corresponde la vista
         //Controlador de mostrar
-         $reads= Reading::where('customer_id','=',$id)->get();
+         $reads= Reading::where('customer_id','=',$id)
+         ->where('period_id','=',$periodo)
+         ->get();
           return view('admin.readings.show')->with('reads',$reads);
        
     }
@@ -145,6 +148,7 @@ class ReadingController extends Controller
          $factura = Reading::find($id);
                $mes=  $factura->month;
                $mes1 =$mes-1;
+               //dd($mes1);
             //  dd($mes1);
                 $flight = Reading::where('id', $id)->orwhere('month','=',$mes1)
                 ->first();
@@ -173,25 +177,117 @@ class ReadingController extends Controller
 
     public function factura($id)
     {   
-        //dd($id);
+             //dd($id);
+        //la bariable factura obtiene el registro correspondiente a dicho id
+        //y resta un mes al mes actual
+         $distinto = Reading::find($id);
+         $periodoanterior=$distinto->period_id-1;
+         if($periodoanterior == 0){
+            $periodoanterior==1;
+         
+         
+         
+
+
                 $factura = Reading::find($id);
                $mes=  $factura->month;
                $mes1 =$mes-1;
+               $customer =$factura->customer_id;
+
+            //variable usada para capturar el periodo anterior al actual y poder restar el mes de diciembre 
+
+               
+              // dd($periodoanterior);}
+               
+               $periodo=Reading::where('period_id', $periodoanterior)
+               ->where('month','=',12)
+               ->where('customer_id','=',$customer)
+                ->first();
+                
+
+              // dd($periodo->medida);
             //  dd($mes1);
+               //la variable flight de utiliza para capturar el mes anterior
                 $flight = Reading::where('id', $id)->orwhere('month','=',$mes1)
                 ->first();
-               $metros =$factura->medida - $flight->medida;
+
+                   //dd($factura->month);
+                $metros =$factura->medida - $flight->medida;
+               if($metros < 10)
+               {
+                   $cantidad=100+$factura->recargo; 
+                }else{
+                $cantidad =($metros*10)+$factura->recargo;
+                }
+                            
+                    
+
+                //la variable metros se utiliza para restar la medida del mes actual con la del mes anterior
+            
+               //$total =$metros*10;
+
+               // dd($factura->customer->name);
+              $pdf = \App::make('dompdf.wrapper');
+              $pdf->loadView('admin.readings.pdf.factura',['factura'=> $factura,'flight'=> $flight,'metros' => $metros,'cantidad'=> $cantidad,'periodo' => $periodo]);
+            return $pdf->stream();
+    }else{
+    
+         $distinto = Reading::find($id);
+         $periodoanterior=$distinto->period_id-1;
+         $factura = Reading::find($id);
+               $mes=  $factura->month;
+               $mes1 =$mes-1;
+               $customer =$factura->customer_id;
+               
+
+
+            //variable usada para capturar el periodo anterior al actual y poder restar el mes de diciembre 
+
+               
+              // dd($periodoanterior);}
+               
+               $periodo=Reading::where('period_id', $periodoanterior)
+               ->where('month','=',12)
+               ->where('customer_id','=',$customer)
+                ->first();
+                //dd($periodo->medida);
+                
+
+              // dd($periodo->medida);
+            //  dd($mes1);
+               //la variable flight de utiliza para capturar el mes anterior
+                $flight = Reading::where('period_id','=',$periodoanterior+1)->where('month','=',$mes1)
+                ->first();
+
+               // dd($flight->medida);
+
+             if($factura->month==1){
+                         $metros =$factura->medida - $periodo->medida;
+                         if($metros < 10){
+                               $cantidad=100+$factura->recargo; 
+                            }else{
+                            $cantidad =($metros*10)+$factura->recargo;
+                            }
+                    }else{
+                           $metros =$factura->medida - $flight->medida;
                if($metros < 10){
            $cantidad=100+$factura->recargo; 
         }else{
         $cantidad =($metros*10)+$factura->recargo;
         }
+                    }
+                            
+                    
+
+                //la variable metros se utiliza para restar la medida del mes actual con la del mes anterior
+            
                //$total =$metros*10;
 
                // dd($factura->customer->name);
               $pdf = \App::make('dompdf.wrapper');
-              $pdf->loadView('admin.readings.pdf.factura',['factura'=> $factura,'flight'=> $flight,'metros' => $metros,'cantidad'=> $cantidad]);
+              $pdf->loadView('admin.readings.pdf.factura',['factura'=> $factura,'flight'=> $flight,'metros' => $metros,'cantidad'=> $cantidad,'periodo' => $periodo]);
             return $pdf->stream();
+    }
     }
 
 }

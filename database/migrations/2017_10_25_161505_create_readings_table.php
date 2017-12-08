@@ -26,9 +26,9 @@ class CreateReadingsTable extends Migration
             //llave foranea de los periodos
             $table->integer('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
-            $table->decimal('medida', 5, 2);
-            $table->decimal('monto', 5, 2);
-            $table->decimal('recargo', 5, 2)->nullable();
+            $table->decimal('medida', 10, 2);
+            $table->decimal('monto', 15, 2);
+            $table->decimal('recargo', 10, 2)->nullable();
             $table->biginteger('month')->nullable();
             $table->enum('estatus', ['1', '2','3'])->default('1')->comment('1= sinpagar 2=pagado');
            

@@ -48,7 +48,7 @@
                 <i class="fa fa-pencil-square-o " aria-hidden="true"></i>
                 </a> -->
 
-          <a href="{{route('reading.show',$customer->ids)}}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Ver al Usuario">
+          <a href="{{route('admin.reading2.show',[$customer->ids,$customer->periodid])}}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Ver al Usuario">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 </a>
               <!--

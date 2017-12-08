@@ -49,8 +49,14 @@ echo date('y-m-d');
 <p class="fech"><strong">#medidor:</strong>{{$factura->customer->num_medidor}}</p>
 <p class="fech"><strong>Recargos:</strong>{{$factura->recargo}}</p>
 <p class="tex1"><strong>Nombre de Usuario:</strong>{{$factura->customer->name}}</p>
-<p class="tex1"><strong>Periodo de consumo:</strong> {{$flight->month}} A {{$factura->month}}</p>
 
+@if($factura->month== 1 and $factura->month = 1)
+    <p class="tex1"><strong>Periodo de consumo:</strong> 1 A 1</p>
+@elseif($factura->month== 1)
+    <p class="tex1"><strong>Periodo de consumo:</strong> 12 A 1</p>
+@else
+<p class="tex1"><strong>Periodo de consumo:</strong> {{$flight->month}} A {{$factura->month}}</p>
+@endif
 
 
 <table >
@@ -61,7 +67,14 @@ echo date('y-m-d');
     <th>COSTO POR METRO</th>
   </tr>
   <tr>
+    @if($factura->month == 1 and $factura->period_id == 1)
+    <td>Es el primer registro</td>
+    @elseif($factura->month == 1 and $factura->period_id != 1)
+    <td>{{$periodo->medida}}</td>
+    @else
     <td>{{$flight->medida}}</td>
+    @endif
+
     <td>{{$factura->medida}}</td>
     <td>{{$metros}}</td>
     <td>10.00</td>
